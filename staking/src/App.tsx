@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { ethers } from "ethers";
 
-const contractAddress = "0x0165878A594ca255338adfa4d48449f69242Eb8F";
+const contractAddress = "0x9A676e781A523b5d0C0e43731313A708CB607508";
 
 const abi = [
   "function stake(uint256)",
   "function withdraw(uint256)",
-  "function claim()"
+  "function claim()",
+  "function earned(address account) external view returns (uint256)"
 ];
 
 function App() {

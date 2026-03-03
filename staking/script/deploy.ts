@@ -16,11 +16,7 @@ async function main() {
 
   const Staking = await ethers.getContractFactory("SimpleStaking");
 
-  const staking = await Staking.deploy(
-    STAKING_TOKEN,
-    REWARD_TOKEN,
-    REWARD_RATE
-  );
+  const staking = await Staking.deploy();
 
   await staking.waitForDeployment();
 

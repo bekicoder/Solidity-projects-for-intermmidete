@@ -16,6 +16,7 @@ contract SimpleStaking {
     constructor() {
         lastUpdateTime = block.timestamp;
     }
+
     // 1️⃣ Update global reward
     function updateReward(address account) internal {
 
@@ -53,6 +54,21 @@ contract SimpleStaking {
 
         uint256 reward = rewards[msg.sender];
         rewards[msg.sender] = 0;
+
         // here we would transfer reward token
     }
+
+    // View function to check total earned reward
+function earned(address account) external view returns (uint256) {
+    uint256 currentRewardPerToken = rewardPerTokenStored;
+
+    if (totalStaked > 0) {
+        uint256 timePassed = block.timestamp - lastUpdateTime;
+        currentRewardPerToken = currentRewardPerToken + (timePassed * rewardRate) / totalStaked;
+    }
+
+    uint256 pending = balanceOf[account] * (currentRewardPerToken - userRewardPerTokenPaid[account]);
+
+    return rewards[account] + pending;
+}
 }
