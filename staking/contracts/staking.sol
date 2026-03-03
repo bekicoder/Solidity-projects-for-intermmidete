@@ -16,7 +16,6 @@ contract SimpleStaking {
     constructor() {
         lastUpdateTime = block.timestamp;
     }
-
     // 1️⃣ Update global reward
     function updateReward(address account) internal {
 
